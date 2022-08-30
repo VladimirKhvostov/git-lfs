@@ -484,7 +484,7 @@ func (c *Client) Transport(u *url.URL, access creds.AccessMode) (http.RoundTripp
 	if access == creds.NegotiateAccess {
 		// This technically copies a mutex, but we know since we've just created
 		// the object that this mutex is unlocked.
-		return &spnego.Transport{Transport: *tr}, nil
+		return &spnego.Transport{Transport: *tr, NoCanonicalize: true}, nil
 	}
 	return tr, nil
 }
